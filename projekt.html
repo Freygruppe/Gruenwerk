@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Das Projekt | Baugruppe Grünwerk</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --main-color: #8A9E94;       
+            --secondary-color: #B8A98F;  
+            --text-color: #333333;       
+            --title-color: #FFFFFF;      
+            --border-color: #8A9E94;     
+            --bg-color: #F4F7F6;         
+            --title-bg-custom: #9AB0A6;  
+            --transition: all 0.3s ease;
+            --white: #FFFFFF;
+            --timeline-line: #E5E7EB; 
+            --highlight-green: #9CCC26;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            color: var(--text-color); 
+            line-height: 1.8; 
+            background-color: var(--bg-color); 
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background-color: var(--white);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            height: 96px; 
+        }
+        .logo { height: 96px; cursor: pointer; display: flex; align-items: center; width: auto; max-width: 200px; }
+        .nav-links { 
+            display: flex; 
+            list-style: none; 
+            gap: 2rem; 
+            flex: 1; 
+            justify-content: flex-end; 
+            margin-right: 2rem; 
+            align-items: center;
+        }
+        .nav-links a { 
+            text-decoration: none; 
+            color: #333333; 
+            font-size: 0.85rem; 
+            font-weight: 600; 
+            letter-spacing: 1px;
+            transition: var(--transition);
+        }
+        .nav-links a:hover { color: var(--main-color); }
+        #lang-dropdown {
+            background: transparent; border: none; color: #333333; font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem; font-weight: 600; letter-spacing: 1px; cursor: pointer; padding: 0 5px;
+            outline: none; transition: var(--transition); appearance: none; -webkit-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3E%3Cpath fill='%23333333' d='M0 2l4 4 4-4z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat; background-position: right center; padding-right: 15px;
+        }
+        .btn {
+            background-color: var(--main-color); color: var(--white); border: none; padding: 10px 20px;
+            cursor: pointer; font-family: 'Montserrat', sans-serif; font-weight: 600;
+            transition: var(--transition); text-transform: uppercase; font-size: 0.8rem; border-radius: 4px; 
+        }
+        .btn:hover { background-color: #A9C0B6; transform: translateY(-1px); }
+        .page-title {
+            display: inline-block; color: var(--title-color); background-color: var(--title-bg-custom); 
+            padding: 12px 30px; font-weight: 300; font-size: 2rem; margin-bottom: 2rem;
+            letter-spacing: 2px; box-shadow: 0 1px 2px rgba(0,0,0,0.08); 
+            width: auto;
+        }
+        section { padding: 4rem 10%; min-height: 80vh; background-color: var(--bg-color); }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .site-footer { background-color: #C7B89B; padding: 25px 30px; width: 100%; color: #F0F0F0; font-size: 14px; text-align: center; }
+        .footer-links { display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 15px; }
+        .footer-links a { color: #F0F0F0; text-decoration: none; transition: var(--transition); }
+        .footer-links a:hover { color: #333333; }
+        .footer-sep { color: #F0F0F0; opacity: 0.6; }
+        .kontext-container {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            margin-bottom: 5rem;
+        }
+        .kontext-img {
+            flex: 1;
+            min-width: 300px;
+            }
+        .kontext-img img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+            display: block;
+        }
+        .kontext-keywords {
+            flex: 1.2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.8rem 3.2rem;
+        }
+        .keyword-block {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.9rem;
+        }
+        .keyword-icon {
+            width: 52px;
+            height: 52px;
+            /* 调整图片样式以适配原有布局 */
+            object-fit: contain;
+            display: block;
+        }
+        .keyword-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--highlight-green);
+            line-height: 1.4;
+        }
+        .keyword-desc {
+            font-size: 1rem; /* 与vision页面正文大小一致 */
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            height: 560px;
+            overflow: hidden;
+            margin-bottom: 8rem;
+            border-radius: 0;
+        }
+        .carousel-track {
+            display: flex;
+            height: 100%;
+            transition: transform 0.6s ease;
+        }
+        .carousel-item {
+            min-width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+        }
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.85);
+            border: none;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: #222;
+            transition: var(--transition);
+            z-index: 10;
+        }
+        .carousel-btn:hover { background: white; }
+        .carousel-btn.prev { left: 2rem; }
+        .carousel-btn.next { right: 2rem; }
+        /* 修改为居中对齐 */
+        .project-info-container {
+            display: flex;
+            gap: 5rem;
+            align-items: flex-start;
+            max-width: 1200px; /* 设置一个合适的最大宽度 */
+            margin: 0 auto; /* 水平居中 */
+        }
+        .project-block {
+            flex: 1;
+        }
+        .block-title {
+            display: inline-block;
+            color: var(--title-color);
+            background-color: var(--title-bg-custom);
+            padding: 12px 30px;
+            font-weight: 300;
+            font-size: 1.5rem;
+            margin-bottom: 1.8rem;
+            letter-spacing: 2px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+        }
+        .project-details {
+            font-size: 1rem; /* 与vision页面正文大小一致 */
+            line-height: 1.9;
+        }
+        .project-details p {
+            margin-bottom: 0.6rem;
+        }
+        .label {
+            font-weight: 600;
+            margin-right: 12px;
+        }
+        .sub-title {
+            font-weight: 600;
+            margin-top: 0.6rem;
+            margin-bottom: 0.3rem;
+        }
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 1rem; /* 与vision页面正文大小一致 */
+        }
+        .timeline-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background-color: #333;
+            flex-shrink: 0;
+        }
+        .timeline-date {
+            min-width: 200px;
+            font-weight: 600;
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            section { padding: 3rem 5%; }
+            .page-title { font-size: 1.5rem; }
+            .kontext-container { flex-direction: column; align-items: flex-start; }
+            .kontext-keywords { grid-template-columns: 1fr; }
+            .project-info-container { flex-direction: column; gap: 3rem; }
+            .carousel-container { height: 320px; } 
+            .carousel-btn { width: 40px; height: 40px; }
+        }
+        
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo" onclick="window.location.href='main.html'">
+            <img src="./images/Logo.png" alt="Grünwerk Logo" style="height: 96px; width: auto; max-width: 200px; object-fit: contain;">
+        </div>
+        <ul class="nav-links">
+            <li><a href="#" onclick="window.location.href='main.html'">STARTSEITE</a></li>
+            <li><a href="#" onclick="window.location.href='projekt.html'">PROJEKT</a></li>
+            <li><a href="#" onclick="window.location.href='vision.html'">VISION</a></li>
+            <li><a href="#" onclick="window.location.href='main.html#term'">AKTUELLES/TERMINE</a></li>
+            <li><a href="#" onclick="window.location.href='main.html#contact'">KONTAKT</a></li>
+            <li class="lang-item">
+                <select id="lang-dropdown">
+                    <option value="de">DE</option>
+                    <option value="en">EN</option>
+                </select>
+            </li>
+        </ul>
+    </nav>
+    <section id="project">
+        <h1 class="page-title" id="t-project-page-title">das Projekt</h1>
+        
+        <div class="kontext-container">
+            <div class="kontext-img">
+                <img src="./images/Projekt-1.jpg" alt="Dietenbach Plan">
+            </div>
+            <div class="kontext-keywords">
+                <div class="keyword-block">
+                    <!-- Neuer Wohnraum in Dietenbach -->
+                    <img class="keyword-icon" src="./images/Wohnraum.png" alt="Neuer Wohnraum in Dietenbach">
+                    <div class="keyword-title" id="t-kw1-title">Neuer Wohnraum in Dietenbach</div>
+                    <div class="keyword-desc" id="t-kw1-desc">In Dietenbach entstehen ca. 6.900 Wohnungen, davon 50% geförderte Mietwohnungen – ideal für den angespannten Freiburger Wohnungsmarkt.</div>
+                </div>
+                <div class="keyword-block">
+                    <!-- Soziale Mischung und Barrierefreiheit -->
+                    <img class="keyword-icon" src="./images/Soziale Mischung.png" alt="Soziale Mischung und Barrierefreiheit">
+                    <div class="keyword-title" id="t-kw2-title">Soziale Mischung und Barrierefreiheit</div>
+                    <div class="keyword-desc" id="t-kw2-desc">Der Stadtteil steht für Inklusion und Vielfalt: 22 Kitas, eine Gemeinschaftsschule sowie Quartiersräume schaffen einen sozialen Treffpunkt für alle Generationen.</div>
+                </div>
+                <div class="keyword-block">
+                    <!-- Grünflächen und Freizeitanlagen -->
+                    <img class="keyword-icon" src="./images/Grünflächen.png" alt="Grünflächen und Freizeitanlagen">
+                    <div class="keyword-title" id="t-kw3-title">Grünflächen und Freizeitanlagen</div>
+                    <div class="keyword-desc" id="t-kw3-desc">Drei große Parks und zahlreiche kleine Grünflächen bieten Sport, Erholung und eine grüne Verbindung zum Rieselfeld – ideal für Familien und alle Altersgruppen.</div>
+                </div>
+                <div class="keyword-block">
+                    <!-- Nachhaltige Energie und Mobilität -->
+                    <img class="keyword-icon" src="./images/Nachhaltige Energie.png" alt="Nachhaltige Energie und Mobilität">
+                    <div class="keyword-title" id="t-kw4-title">Nachhaltige Energie und Mobilität</div>
+                    <div class="keyword-desc" id="t-kw4-desc">Klimafreundliche Energieversorgung (Solar, Grundwasserwärme) und autofreie Quartiere: Hochgaragen, verlängerte Straßenbahn und fußgängerfreundliche Wege.</div>
+                </div>
+                <div class="keyword-block">
+                    <!-- Gestaltung des öffentlichen Raums -->
+                    <img class="keyword-icon" src="./images/Gestaltung Raum.png" alt="Gestaltung des öffentlichen Raums">
+                    <div class="keyword-title" id="t-kw5-title">Gestaltung des öffentlichen Raums</div>
+                    <div class="keyword-desc" id="t-kw5-desc">Marktplatz und Quartiersplätze als Treffpunkte: Straßen und Plätze fördern Nachbarschaft und soziales Miteinander in einem hochwertigen, grünen Umfeld.</div>
+                </div>
+                <div class="keyword-block">
+                    <!-- Klimaschutz und nachhaltiges Bauen -->
+                    <img class="keyword-icon" src="./images/Klimaschutz.png" alt="Klimaschutz und nachhaltiges Bauen">
+                    <div class="keyword-title" id="t-kw6-title">Klimaschutz und nachhaltiges Bauen</div>
+                    <div class="keyword-desc" id="t-kw6-desc">Holz als nachhaltiges Baumaterial, Wasserspeicherung und Begrünung machen Dietenbach zu einem umweltfreundlichen, klimaschonenden Stadtteil.</div>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-container">
+            <div class="carousel-track" id="carousel-track">
+                <div class="carousel-item" style="background-image: url('./images/Rendering-3.jpg');"></div>
+                <div class="carousel-item" style="background-image: url('./images/Rendering-5.jpg');"></div>
+                <div class="carousel-item" style="background-image: url('./images/Rendering-2.jpg');"></div>
+                <div class="carousel-item" style="background-image: url('./images/Rendering-1.jpg');"></div>
+                <div class="carousel-item" style="background-image: url('./images/Rendering-4.jpg');"></div>
+            </div>
+            <button class="carousel-btn prev" onclick="moveCarousel(-1)">&#10094;</button>
+            <button class="carousel-btn next" onclick="moveCarousel(1)">&#10095;</button>
+        </div>
+        <div class="project-info-container">
+            <div class="project-block">
+                <h2 class="block-title" id="t-project-block-title">unser Projekt</h2>
+                <div class="project-details" id="t-project-details">
+                    <p><span class="label">Lage:</span> Dietenbach, Bauabschnitt 1 (Frohnholz)</p>
+                    <p><span class="label">Geplant:</span> ca. 12–14 Eigentumswohnungen</p>
+                    <p><span class="sub-title">Energiestand:</span> passivhausstandard/KFW40 plus</p>
+                    <p>Nachhaltige Bauweise</p>
+                    <p>Barrierefrei mit Aufzug</p>
+                    <p>umweltfreundlich und familienfreundlich</p>
+                </div>
+            </div>
+            <div class="project-block">
+                <h2 class="block-title" id="t-timeline-block-title">Zeitplan</h2>
+                <div class="timeline-list" id="t-timeline-list">
+                    <div class="timeline-item">
+                        <span class="timeline-dot"></span>
+                        <span class="timeline-date">12.06.2026</span>
+                        <span class="timeline-text">Bewerbungsabgabe</span>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-dot"></span>
+                        <span class="timeline-date">4. Quartal 2026</span>
+                        <span class="timeline-text">Vergabeentscheidung</span>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-dot"></span>
+                        <span class="timeline-date">2027</span>
+                        <span class="timeline-text">Baubeginn</span>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-dot"></span>
+                        <span class="timeline-date">2028/2029</span>
+                        <span class="timeline-text">Bezugsfertig</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="site-footer">
+        <div class="footer-links">
+            <a href="impressum.html">Impressum</a><span class="footer-sep">|</span>
+            <a href="datenschutz.html">Datenschutzerklärung</a><span class="footer-sep">|</span>
+            <a href="main.html#contact">Kontakt</a>
+        </div>
+        <div class="footer-copyright">© 2026 Baugruppe Grünwerk Gemeinschaft, Freiburg im Breisgau</div>
+    </footer>
+    <script>
+        const translations = {
+            de: {
+                projectPageTitle: "das Projekt",
+                kw1Title: "Neuer Wohnraum in Dietenbach",
+                kw1Desc: "In Dietenbach entstehen ca. 6.900 Wohnungen, davon 50% geförderte Mietwohnungen – ideal für den angespannten Freiburger Wohnungsmarkt.",
+                kw2Title: "Soziale Mischung und Barrierefreiheit",
+                kw2Desc: "Der Stadtteil steht für Inklusion und Vielfalt: 22 Kitas, eine Gemeinschaftsschule sowie Quartiersräume schaffen einen sozialen Treffpunkt für alle Generationen.",
+                kw3Title: "Grünflächen und Freizeitanlagen",
+                kw3Desc: "Drei große Parks und zahlreiche kleine Grünflächen bieten Sport, Erholung und eine grüne Verbindung zum Rieselfeld – ideal für Familien und alle Altersgruppen.",
+                kw4Title: "Nachhaltige Energie und Mobilität",
+                kw4Desc: "Klimafreundliche Energieversorgung (Solar, Grundwasserwärme) und autofreie Quartiere: Hochgaragen, verlängerte Straßenbahn und fußgängerfreundliche Wege.",
+                kw5Title: "Gestaltung des öffentlichen Raums",
+                kw5Desc: "Market square and neighborhood squares as meeting points: Streets and squares promote neighborliness and social interaction in a high-quality, green environment.",
+                kw6Title: "Klimaschutz und nachhaltiges Bauen",
+                kw6Desc: "Holz als nachhaltiges Baumaterial, Wasserspeicherung und Begrünung machen Dietenbach zu einem umweltfreundlichen, klimaschonenden Stadtteil.",
+                projectBlockTitle: "unser Projekt",
+                projectDetails: `<p><span class="label">Lage:</span> Dietenbach, Bauabschnitt 1 (Frohnholz)</p>
+<p><span class="label">Geplant:</span> ca. 12–14 Eigentumswohnungen</p>
+<p><span class="sub-title">Energiestand:</span> passivhausstandard/KFW40 plus</p>
+<p>Nachhaltige Bauweise</p>
+<p>Barrierefrei mit Aufzug</p>
+<p>umweltfreundlich und familienfreundlich</p>`,
+                timelineBlockTitle: "Zeitplan",
+                timelineList: `<div class="timeline-item">
+                        <span class="timeline-dot"></span>
+                        <span class="timeline-date">12.06.2026</span>
+                        <span class="timeline-text">Bewerbungsabgabe</span>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-dot"></span>
+                        <span class="timeline-date">4. Quartal 2026</span>
+                        <span class="timeline-text">Vergabeentscheidung</span>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-dot"></span>
+                        <span class="timeline-date">2027</span>
+                        <span class="timeline-text">Baubeginn</span>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-dot"></span>
+                        <span class="timeline-date">2028/2029</span>
+                        <span class="timeline-text">Bezugsfertig</span>
+                    </div>`
+            },
+            en: {
+                projectPageTitle: "The Project",
+                kw1Title: "New Living Space in Dietenbach",
+                kw1Desc: "Around 6,900 apartments are being built in Dietenbach, 50% of which are subsidized rental apartments – ideal for Freiburg's tight housing market.",
+                kw2Title: "Social Mix and Accessibility",
+                kw2Desc: "The district stands for inclusion and diversity: 22 daycares, a community school and neighborhood spaces create a social meeting point for all generations.",
+                kw3Title: "Green Spaces and Leisure Facilities",
+                kw3Desc: "Three large parks and numerous small green areas offer sports, recreation and a green connection to Rieselfeld – ideal for families and all age groups.",
+                kw4Title: "Sustainable Energy and Mobility",
+                kw4Desc: "Climate-friendly energy supply (solar, groundwater heat) and car-free neighborhoods: parking garages, extended tram lines and pedestrian-friendly paths.",
+                kw5Title: "Public Space Design",
+                kw5Desc: "Market square and neighborhood squares as meeting points: Streets and squares promote neighborliness and social interaction in a high-quality, green environment.",
+                kw6Title: "Climate Protection and Sustainable Building",
+                kw6Desc: "Wood as a sustainable building material, water storage and greening make Dietenbach an environmentally friendly, climate-friendly district.",
+                projectBlockTitle: "Our Project",
+                projectDetails: `<p><span class="label">Location:</span> Dietenbach, Construction Phase 1 (Frohnholz)</p>
+<p><span class="label">Planned:</span> approx. 12–14 condominiums</p>
+<p><span class="sub-title">Energy Standard:</span> Passivhaus / KFW40 plus</p>
+<p>Sustainable construction</p>
+<p>Accessible with elevator</p>
+<p>Environmentally friendly and family-friendly</p>`,
+                timelineBlockTitle: "Timeline",
+                timelineList: `<div class="timeline-item">
+                        <span class="timeline-dot"></span>
+                        <span class="timeline-date">06/12/2026</span>
+                        <span class="timeline-text">Application Submission</span>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-dot"></span>
+                        <span class="timeline-date">Q4 2026</span>
+                        <span class="timeline-text">Award Decision</span>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-dot"></span>
+                        <span class="timeline-date">2027</span>
+                        <span class="timeline-text">Construction Start</span>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-dot"></span>
+                        <span class="timeline-date">2028/2029</span>
+                        <span class="timeline-text">Ready for Move-in</span>
+                    </div>`
+            }
+        };
+        function toggleLanguage(lang) {
+            localStorage.setItem('selectedLang', lang);
+            document.getElementById("t-project-page-title").innerText = translations[lang].projectPageTitle;
+            document.getElementById("t-kw1-title").innerText = translations[lang].kw1Title;
+            document.getElementById("t-kw1-desc").innerText = translations[lang].kw1Desc;
+            document.getElementById("t-kw2-title").innerText = translations[lang].kw2Title;
+            document.getElementById("t-kw2-desc").innerText = translations[lang].kw2Desc;
+            document.getElementById("t-kw3-title").innerText = translations[lang].kw3Title;
+            document.getElementById("t-kw3-desc").innerText = translations[lang].kw3Desc;
+            document.getElementById("t-kw4-title").innerText = translations[lang].kw4Title;
+            document.getElementById("t-kw4-desc").innerText = translations[lang].kw4Desc;
+            document.getElementById("t-kw5-title").innerText = translations[lang].kw5Title;
+            document.getElementById("t-kw5-desc").innerText = translations[lang].kw5Desc;
+            document.getElementById("t-kw6-title").innerText = translations[lang].kw6Title;
+            document.getElementById("t-kw6-desc").innerText = translations[lang].kw6Desc;
+            document.getElementById("t-project-block-title").innerText = translations[lang].projectBlockTitle;
+            document.getElementById("t-project-details").innerHTML = translations[lang].projectDetails;
+            document.getElementById("t-timeline-block-title").innerText = translations[lang].timelineBlockTitle;
+            document.getElementById("t-timeline-list").innerHTML = translations[lang].timelineList;
+        }
+        let currentSlide = 0;
+        function moveCarousel(direction) {
+            const track = document.getElementById("carousel-track");
+            if(!track) return;
+            const slides = track.children;
+            const totalSlides = slides.length;
+            currentSlide += direction;
+            if (currentSlide < 0) currentSlide = totalSlides - 1;
+            if (currentSlide >= totalSlides) currentSlide = 0;
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
+        setInterval(() => { moveCarousel(1); }, 5000);
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('selectedLang') || 'de';
+            const langSelect = document.getElementById('lang-dropdown');
+            langSelect.value = savedLang;
+            
+            // 修复：确保事件绑定在DOM加载后，避免内联事件失效
+            langSelect.addEventListener('change', function() {
+                toggleLanguage(this.value);
+            });
+            
+            toggleLanguage(savedLang);
+        });
+    </script>
+</body>
+</html>

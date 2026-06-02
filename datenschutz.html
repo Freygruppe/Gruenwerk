@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datenschutzerklärung | Baugruppe Grünwerk</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --main-color: #8A9E94;
+            --text-color: #6B7274;
+            --title-bg: #95A595;
+            --body-bg: #F5F7F5;
+            --white: #FFFFFF;
+            --footer-bg: #C7B89B;
+            --border-color: #8A9E94;
+            --transition: all 0.3s ease;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; color: var(--text-color); line-height: 1.6; background-color: var(--body-bg); }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background-color: var(--white);
+            border-bottom: 1px solid var(--border-color);
+        }
+        .logo { height: 96px; display: flex; align-items: center; cursor: pointer; }
+        .logo img { height: 96px; }
+        .nav-links { display: flex; list-style: none; gap: 2rem; flex: 1; justify-content: flex-end; margin-right: 2rem; align-items: center;}
+        .nav-links a { text-decoration: none; color: #333333; font-size: 0.85rem; font-weight: 600; letter-spacing: 1px; transition: var(--transition);}
+        .nav-links a:hover { color: var(--main-color); }
+        /* 语言选择下拉框 - 与Main页面完全一致的样式 */
+        #lang-dropdown {
+            background: transparent; border: none; color: #333333; font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem; font-weight: 600; letter-spacing: 1px; cursor: pointer; padding: 0 5px;
+            outline: none; transition: var(--transition); appearance: none; -webkit-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3E%3Cpath fill='%23333333' d='M0 2l4 4 4-4z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat; background-position: right center; padding-right: 15px;
+        }
+        #lang-dropdown:hover { color: var(--main-color); }
+        .page-header { background-color: var(--title-bg); padding: 20px 5%; margin-bottom: 40px; }
+        .page-header h1 { color: var(--white); font-weight: 300; font-size: 1.8rem; letter-spacing: 2px; }
+        .content-wrap { padding: 0 10% 80px 10%; max-width: 1200px; }
+        .content-wrap h2 { color: #333; margin: 30px 0 15px 0; font-size: 1.2rem; }
+        .content-wrap p { margin-bottom: 15px; font-size: 0.95rem; }
+        .site-footer { background-color: var(--footer-bg); padding: 25px 30px; text-align: center; color: #f0f0f0; }
+        .footer-links { margin-bottom: 10px; }
+        .footer-links a { color: #f0f0f0; text-decoration: none; margin: 0 10px; font-size: 14px; transition: var(--transition);}
+        .footer-links a:hover { color: #333; }
+        .footer-copyright { font-size: 12px; }
+        @media (max-width: 768px) { .nav-links { display: none; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo" onclick="window.location.href='Main.html'">
+            <img src="./images/Logo.png" alt="Grünwerk Logo" style="height: 96px; width: auto; max-width: 200px; object-fit: contain;">
+        </div>
+        <ul class="nav-links">
+            <li><a href="Main.html"><span data-lang="de">STARTSEITE</span><span data-lang="en" style="display:none;">HOME</span></a></li>
+            <li><a href="projekt.html"><span data-lang="de">PROJEKT</span><span data-lang="en" style="display:none;">PROJECT</span></a></li>
+            <li><a href="vision.html"><span data-lang="de">VISION</span><span data-lang="en" style="display:none;">VISION</span></a></li>
+            <li><a href="Main.html#term"><span data-lang="de">TERMINE</span><span data-lang="en" style="display:none;">DATES & EVENTS</span></a></li>
+            <li><a href="Main.html#contact"><span data-lang="de">KONTAKT</span><span data-lang="en" style="display:none;">CONTACT</span></a></li>
+            <li class="lang-item">
+                <select id="lang-dropdown" onchange="toggleLanguage(this.value)">
+                    <option value="de">DE</option>
+                    <option value="en">EN</option>
+                </select>
+            </li>
+        </ul>
+    </nav>
+    <header class="page-header">
+        <h1><span data-lang="de">Datenschutzerklärung</span><span data-lang="en" style="display:none;">Privacy Policy</span></h1>
+    </header>
+    <main class="content-wrap">
+        <h2><span data-lang="de">1. Datenschutz auf einen Blick</span><span data-lang="en" style="display:none;">1. Data Protection at a Glance</span></h2>
+        <p><span data-lang="de">Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen.</span><span data-lang="en" style="display:none;">The following notes give you a simple overview of what happens to your personal data when you visit this website.</span></p>
+        
+        <h2><span data-lang="de">2. Hosting</span><span data-lang="en" style="display:none;">2. Hosting</span></h2>
+        <p><span data-lang="de">Wir hosten die Inhalte unserer Website bei folgendem Anbieter: GitHub Pages. Bei der Nutzung dieser Website werden personenbezogene Daten auf den Servern des Hosters verarbeitet.</span><span data-lang="en" style="display:none;">We host the content of our website with the following provider: GitHub Pages. When using this website, personal data is processed on the servers of the host.</span></p>
+        
+        <h2><span data-lang="de">3. Allgemeine Hinweise und Pflichtinformationen</span><span data-lang="en" style="display:none;">3. General Information and Mandatory Information</span></h2>
+        <p><span data-lang="de">Die Betreiber dieser Seiten nehmen den Schutz Ihrer persönlichen Daten sehr ernst. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend den gesetzlichen Datenschutzvorschriften sowie dieser Datenschutzerklärung.</span><span data-lang="en" style="display:none;">The operators of these pages take the protection of your personal data very seriously. We treat your personal data confidentially and in accordance with the statutory data protection regulations as well as this privacy policy.</span></p>
+        
+        <h2><span data-lang="de">4. Datenerfassung auf dieser Website</span><span data-lang="en" style="display:none;">4. Data Collection on This Website</span></h2>
+        <p><span data-lang="de">Wenn Sie uns per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben aus dem Anfrageformular inklusive der von Ihnen dort angegebenen Kontaktdaten zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei uns gespeichert.</span><span data-lang="en" style="display:none;">If you send us inquiries via the contact form, your details from the inquiry form, including the contact data you provided there, will be stored with us for the purpose of processing the inquiry and for follow-up questions.</span></p>
+        
+        <h2><span data-lang="de">5. Ihre Betroffenenrechte</span><span data-lang="en" style="display:none;">5. Your Rights as a Data Subject</span></h2>
+        <p><span data-lang="de">Sie haben jederzeit das Recht, unentgeltlich Auskunft über Herkunft, Empfänger und Zweck Ihrer gespeicherten personenbezogenen Daten zu erhalten. Sie haben außerdem ein Recht, die Berichtigung oder Löschung dieser Daten zu verlangen.</span><span data-lang="en" style="display:none;">You have the right at any time to obtain free information about the origin, recipient and purpose of your stored personal data. You also have the right to request the correction or deletion of this data.</span></p>
+    </main>
+    <footer class="site-footer">
+        <div class="footer-links">
+            <a href="impressum.html"><span data-lang="de">Impressum</span><span data-lang="en" style="display:none;">Legal Notice</span></a> | 
+            <a href="datenschutz.html"><span data-lang="de">Datenschutzerklärung</span><span data-lang="en" style="display:none;">Privacy Policy</span></a> | 
+            <a href="Main.html#contact"><span data-lang="de">Kontakt</span><span data-lang="en" style="display:none;">Contact</span></a>
+        </div>
+        <div class="footer-copyright">
+            © 2026 Baugruppe Grünwerk Gemeinschaft, Freiburg im Breisgau
+        </div>
+    </footer>
+    <script>
+        // 语言切换与状态保存 - 仅调整触发方式适配下拉框，核心逻辑未改动
+        // 页面标题映射
+        const pageTitles = {
+            de: "Datenschutzerklärung | Baugruppe Grünwerk",
+            en: "Privacy Policy | Baugruppe Grünwerk"
+        };
+        // 初始化语言
+        let currentLang = localStorage.getItem('preferredLang') || 'de';
+        // 设置下拉框初始选中值
+        document.getElementById('lang-dropdown').value = currentLang;
+        
+        // 应用语言设置
+        function applyLanguage(lang) {
+            // 更新所有文本元素
+            document.querySelectorAll('[data-lang]').forEach(el => {
+                if (el.dataset.lang === lang) {
+                    el.style.display = 'inline';
+                } else {
+                    el.style.display = 'none';
+                }
+            });
+            // 更新页面标题
+            document.title = pageTitles[lang];
+            // 更新html lang属性
+            document.documentElement.lang = lang;
+        }
+        // 初始化
+        applyLanguage(currentLang);
+        // 下拉框切换语言
+        function toggleLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('preferredLang', currentLang);
+            applyLanguage(currentLang);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impressum | Baugruppe Grünwerk</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --main-color: #8A9E94;
+            --secondary-color: #B8A98F;
+            --text-color: #6B7274;
+            --title-bg: #95A595; /* 要求的标题栏颜色 */
+            --body-bg: #F5F7F5; /* 要求的背景颜色 */
+            --white: #FFFFFF;
+            --footer-bg: #C7B89B;
+            --border-color: #8A9E94;
+            --transition: all 0.3s ease;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            color: var(--text-color); 
+            line-height: 1.6; 
+            background-color: var(--body-bg); 
+        }
+        /* 导航栏 */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background-color: var(--white);
+            border-bottom: 1px solid var(--border-color);
+        }
+        .logo { height: 96px; display: flex; align-items: center; cursor: pointer; }
+        .logo img { height: 96px; }
+        .nav-links { display: flex; list-style: none; gap: 2rem; flex: 1; justify-content: flex-end; margin-right: 2rem; align-items: center;}
+        .nav-links a { text-decoration: none; color: #333333; font-size: 0.85rem; font-weight: 600; letter-spacing: 1px; transition: var(--transition);}
+        .nav-links a:hover { color: var(--main-color); }
+        /* 语言选择下拉框 - 与Main页面完全一致的样式 */
+        #lang-dropdown {
+            background: transparent; border: none; color: #333333; font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem; font-weight: 600; letter-spacing: 1px; cursor: pointer; padding: 0 5px;
+            outline: none; transition: var(--transition); appearance: none; -webkit-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3E%3Cpath fill='%23333333' d='M0 2l4 4 4-4z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat; background-position: right center; padding-right: 15px;
+        }
+        #lang-dropdown:hover { color: var(--main-color); }
+        /* 标题栏 */
+        .page-header {
+            background-color: var(--title-bg);
+            padding: 20px 5%;
+            margin-bottom: 40px;
+        }
+        .page-header h1 {
+            color: var(--white);
+            font-weight: 300;
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+        }
+        /* 内容区 */
+        .content-wrap { padding: 0 10% 80px 10%; max-width: 1200px; }
+        .content-wrap h2 { color: #333; margin: 30px 0 15px 0; font-size: 1.2rem; }
+        .content-wrap p { margin-bottom: 15px; font-size: 0.95rem; }
+        /* 页脚 */
+        .site-footer { background-color: var(--footer-bg); padding: 25px 30px; text-align: center; color: #f0f0f0; }
+        .footer-links { margin-bottom: 10px; }
+        .footer-links a { color: #f0f0f0; text-decoration: none; margin: 0 10px; font-size: 14px; transition: var(--transition);}
+        .footer-links a:hover { color: #333; }
+        .footer-copyright { font-size: 12px; }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .content-wrap { padding: 0 5% 60px 5%; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo" onclick="window.location.href='Main.html'">
+            <img src="./images/Logo.png" alt="Grünwerk Logo" style="height: 96px; width: auto; max-width: 200px; object-fit: contain;">
+        </div>
+        <ul class="nav-links">
+            <li><a href="Main.html"><span data-lang="de">STARTSEITE</span><span data-lang="en" style="display:none;">HOME</span></a></li>
+            <li><a href="projekt.html"><span data-lang="de">PROJEKT</span><span data-lang="en" style="display:none;">PROJECT</span></a></li>
+            <li><a href="vision.html"><span data-lang="de">VISION</span><span data-lang="en" style="display:none;">VISION</span></a></li>
+            <li><a href="Main.html#term"><span data-lang="de">TERMINE</span><span data-lang="en" style="display:none;">DATES & EVENTS</span></a></li>
+            <li><a href="Main.html#contact"><span data-lang="de">KONTAKT</span><span data-lang="en" style="display:none;">CONTACT</span></a></li>
+            <li class="lang-item">
+                <select id="lang-dropdown" onchange="toggleLanguage(this.value)">
+                    <option value="de">DE</option>
+                    <option value="en">EN</option>
+                </select>
+            </li>
+        </ul>
+    </nav>
+    <header class="page-header">
+        <h1><span data-lang="de">Impressum</span><span data-lang="en" style="display:none;">Legal Notice</span></h1>
+    </header>
+<main class="content-wrap">
+
+    <h2><span data-lang="de">Angaben gemäß § 5 TMG</span><span data-lang="en" style="display:none;">Information according to § 5 TMG</span></h2>
+
+    <p>
+        <span data-lang="de">
+            Baugruppe Grünwerk (Initiative in Gründung)<br>
+            Freiburg im Breisgau, Deutschland
+        </span>
+        <span data-lang="en" style="display:none;">
+            Baugruppe Grünwerk (initiative in formation)<br>
+            Freiburg im Breisgau, Germany
+        </span>
+    </p>
+
+    <h2><span data-lang="de">Kontakt</span><span data-lang="en" style="display:none;">Contact</span></h2>
+
+    <p>
+        <span data-lang="de">
+            E-Mail: info@gruenwerk-dietenbach.de
+        </span>
+        <span data-lang="en" style="display:none;">
+            Email: info@gruenwerk-dietenbach.de
+        </span>
+    </p>
+
+    <h2><span data-lang="de">Verantwortlich für den Inhalt</span><span data-lang="en" style="display:none;">Responsible for content</span></h2>
+
+    <p>
+        <span data-lang="de">
+            Baugruppe Grünwerk Initiative<br>
+            (Kontakt über oben genannte E-Mail-Adresse)
+        </span>
+        <span data-lang="en" style="display:none;">
+            Baugruppe Grünwerk initiative<br>
+            (contact via email above)
+        </span>
+    </p>
+
+    <h2><span data-lang="de">Haftung für Inhalte</span><span data-lang="en" style="display:none;">Liability for content</span></h2>
+
+    <p>
+        <span data-lang="de">
+            Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. 
+            Eine Haftung für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte wird jedoch im Rahmen der Projektphase ausgeschlossen.
+        </span>
+        <span data-lang="en" style="display:none;">
+            As service providers we are responsible for our own content on these pages according to general laws. 
+            However, we do not guarantee accuracy, completeness or timeliness during the project phase.
+        </span>
+    </p>
+
+    <h2><span data-lang="de">EU-Streitschlichtung</span><span data-lang="en" style="display:none;">EU Dispute Resolution</span></h2>
+
+    <p>
+        <span data-lang="de">
+            Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: 
+            <a href="https://ec.europa.eu/consumers/odr/" target="_blank">
+                https://ec.europa.eu/consumers/odr/
+            </a>.
+        </span>
+        <span data-lang="en" style="display:none;">
+            The European Commission provides a platform for online dispute resolution (OS): 
+            <a href="https://ec.europa.eu/consumers/odr/" target="_blank">
+                https://ec.europa.eu/consumers/odr/
+            </a>.
+        </span>
+    </p>
+
+    <h2><span data-lang="de">Hinweis</span><span data-lang="en" style="display:none;">Note</span></h2>
+
+    <p>
+        <span data-lang="de">
+            Dieses Projekt befindet sich in der Gründungs- und Konzeptphase. Inhalte und Angaben können sich zukünftig ändern.
+        </span>
+        <span data-lang="en" style="display:none;">
+            This project is currently in a formation and concept phase. Content may change in the future.
+        </span>
+    </p>
+
+</main>
+    <footer class="site-footer">
+        <div class="footer-links">
+            <a href="impressum.html"><span data-lang="de">Impressum</span><span data-lang="en" style="display:none;">Legal Notice</span></a> | 
+            <a href="datenschutz.html"><span data-lang="de">Datenschutzerklärung</span><span data-lang="en" style="display:none;">Privacy Policy</span></a> | 
+            <a href="Main.html#contact"><span data-lang="de">Kontakt</span><span data-lang="en" style="display:none;">Contact</span></a>
+        </div>
+        <div class="footer-copyright">
+            © 2026 Baugruppe Grünwerk Gemeinschaft, Freiburg im Breisgau
+        </div>
+    </footer>
+    <script>
+        // 语言切换与状态保存 - 仅调整触发方式适配下拉框，核心逻辑未改动
+        // 页面标题映射
+        const pageTitles = {
+            de: "Impressum | Baugruppe Grünwerk",
+            en: "Legal Notice | Baugruppe Grünwerk"
+        };
+        // 初始化语言
+        let currentLang = localStorage.getItem('preferredLang') || 'de';
+        // 设置下拉框初始选中值
+        document.getElementById('lang-dropdown').value = currentLang;
+        
+        // 应用语言设置
+        function applyLanguage(lang) {
+            // 更新所有文本元素
+            document.querySelectorAll('[data-lang]').forEach(el => {
+                if (el.dataset.lang === lang) {
+                    el.style.display = 'inline';
+                } else {
+                    el.style.display = 'none';
+                }
+            });
+            // 更新页面标题
+            document.title = pageTitles[lang];
+            // 更新html lang属性
+            document.documentElement.lang = lang;
+        }
+        // 初始化
+        applyLanguage(currentLang);
+        // 下拉框切换语言
+        function toggleLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('preferredLang', currentLang);
+            applyLanguage(currentLang);
+        }
+    </script>
+</body>
+</html>

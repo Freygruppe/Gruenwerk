@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baugruppe Grünwerk | Baugruppe Grünwerk Gemeinschaft</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --main-color: #8A9E94;
+            --secondary-color: #B8A98F;
+            --text-color: #333333;
+            --title-color: #000000;
+            --border-color: #8A9E94;
+            --bg-color: #F4F7F6;
+            --title-bg-custom: #9AB0A6;
+            --transition: all 0.3s ease;
+            --white: #FFFFFF;
+            --timeline-line: #E5E7EB;
+            --highlight-green: #9CCC26;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-color);
+            line-height: 1.8;
+            background-color: var(--bg-color);
+        }
+        section p, .milestone-item, .gdpr-text, .intro-text {
+            color: var(--text-color);
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background-color: var(--white);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            height: 96px;
+        }
+        .logo { height: 96px; cursor: pointer; display: flex; align-items: center;  width: auto; max-width: 200px;}
+            .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            flex: 1;
+            justify-content: flex-end;
+            margin-right: 2rem;
+            align-items: center;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #333333;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: var(--transition);
+        }
+        .nav-links a:hover { color: var(--main-color); }
+        #lang-dropdown {
+            background: transparent; border: none; color: #333333; font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem; font-weight: 600; letter-spacing: 1px; cursor: pointer; padding: 0 5px;
+            outline: none; transition: var(--transition); appearance: none; -webkit-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3E%3Cpath fill='%23333333' d='M0 2l4 4 4-4z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat; background-position: right center; padding-right: 15px;
+        }
+        .btn {
+            background-color: var(--main-color); color: var(--white); border: none; padding: 10px 20px;
+            cursor: pointer; font-family: 'Montserrat', sans-serif; font-weight: 600;
+            transition: var(--transition); text-transform: uppercase; font-size: 0.8rem; border-radius: 4px;
+        }
+        .btn:hover { background-color: #A9C0B6; transform: translateY(-1px); }
+        .page-title {
+            display: inline-block; color: #FFFFFF; background-color: var(--title-bg-custom);
+            padding: 12px 30px; font-weight: 300; font-size: 2rem; margin-bottom: 2rem;
+            letter-spacing: 2px; box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+            width: auto;
+        }
+        section { padding: 4rem 10%; display: none; min-height: 80vh; background-color: var(--bg-color); }
+        section.active { display: block; animation: fadeIn 0.6s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .home-section {
+        padding: 0;
+        min-height: auto;
+        background-color: var(--white);
+        overflow: hidden;
+        }
+        .milestone-container { display: flex; flex-direction: column; margin-top: 2rem; max-width: 800px; position: relative; }
+        .milestone-container::after { content: ''; position: absolute; left: 5px; top: 5px; bottom: 25px; width: 1px; background-color: var(--main-color); z-index: 1; }
+        .milestone-item { padding-left: 35px; padding-bottom: 2.5rem; position: relative; color: var(--text-color); z-index: 2; }
+        .milestone-item::before { content: ''; position: absolute; left: 0; top: 5px; width: 12px; height: 12px; background: var(--main-color); border-radius: 50%; z-index: 3; }
+        section#contact {
+            position: relative;
+            background-image: url('./images/kontakt.png');
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+        }
+        section#contact::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(244, 246, 246, 0.9);
+            z-index: -1;
+        }
+        #contactForm {
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            gap: 11px;
+            margin-top: 1rem;
+        }
+        .form-group { display: flex; flex-direction: column; gap: 5px; }
+        .form-group label { font-size: 0.95rem; font-weight: 600; color: var(--text-color); text-align: left; }
+        .form-input {
+            width: 100%;
+            padding: 10px 16px;
+            border: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.9);
+            outline: none;
+            font-family: 'Montserrat', sans-serif;
+            transition: var(--transition);
+            color: var(--text-color);
+            border-radius: 4px;
+        }
+        .form-input:focus { border-color: var(--secondary-color); background: var(--white); }
+        .gdpr-text {
+            font-size: 0.9rem;
+            color: var(--text-color);
+            line-height: 1.4;
+            margin: 0.5rem 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            text-align: left;
+        }
+        .gdpr-text input { width: 18px; height: 18px; margin-top: 2px; flex-shrink: 0; }
+        .btn-submit { align-self: flex-start; padding: 10px 40px; font-size: 0.9rem; }
+        .site-footer { background-color: #C7B89B; padding: 25px 30px; width: 100%; color: #F0F0F0; font-size: 14px; text-align: center; }
+        .footer-links { display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 15px; }
+        .footer-links a { color: #F0F0F0; text-decoration: none; transition: var(--transition); }
+        .footer-links a:hover { color: #333333; }
+        .footer-sep { color: #F0F0F0; opacity: 0.6; }
+        @keyframes typewriter { from { width: 0; } to { width: 100%; } }
+        @keyframes cursorBlink { from, to { border-color: transparent; } 50% { border-color: #FFFFFF; } }
+        @keyframes cursorHidden { to { border-color: transparent; } }
+        @keyframes subFadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+        .hero-banner-fs { height: 80vh; width: 100%; background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('./images/Home.png'); background-size: cover; background-position: center bottom; display: flex; flex-direction: column; justify-content: center; align-items: flex-end; text-align: right; color: var(--white); padding-right: 8%; padding-left: 5%; }
+        .hero-title-fs { font-family: 'Montserrat', sans-serif; font-size: 3.8rem; font-weight: 600; line-height: 1.2; margin-bottom: 1.5rem; text-shadow: 0 3px 12px rgba(0,0,0,0.4); display: flex; flex-direction: column; align-items: flex-end; }
+        .hero-title-fs span { display: inline-block; overflow: hidden; white-space: nowrap; width: 0; border-right: 3px solid transparent; box-sizing: border-box; }
+        .anim-active .line-1 { animation: typewriter 3s steps(20) forwards, cursorBlink 0.8s step-end infinite, cursorHidden 0s forwards 3s; }
+        .anim-active .line-2 { animation: typewriter 3.5s steps(25) 3s forwards, cursorBlink 0.8s step-end infinite, cursorHidden 0s forwards 6.5s; }
+        .anim-active .hero-sub-fs { animation: subFadeIn 1s ease-out 6.5s forwards; }
+        .hero-sub-fs { font-size: 1.3rem; letter-spacing: 2px; font-weight: 300; color: #FFFFFF !important; text-shadow: 0 2px 8px rgba(0,0,0,0.3); opacity: 0; margin-top: 10px; }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            section { padding: 3rem 5%; }
+            .page-title { font-size: 1.5rem; }
+            #contactForm { width: 100%; }
+        }
+/* ---------- Projekt 页面样式 (与独立页面完全一致) ---------- */
+.kontext-container {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    margin-bottom: 5rem;
+}
+.kontext-img {
+    flex: 1;
+    min-width: 300px;
+}
+.kontext-img img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    display: block;
+}
+.kontext-keywords {
+    flex: 1.2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.8rem 3.2rem;
+}
+.keyword-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.9rem;
+}
+.keyword-icon {
+    width: 52px;
+    height: 52px;
+    object-fit: contain;
+    display: block;
+}
+.keyword-title {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--highlight-green);
+    line-height: 1.4;
+}
+.keyword-desc {
+    font-size: 1rem;
+    color: var(--text-color);
+    line-height: 1.6;
+}
+.carousel-container {
+    position: relative;
+    width: 100%;
+    height: 560px;
+    overflow: hidden;
+    margin-bottom: 8rem;
+    border-radius: 0;
+}
+.carousel-track {
+    display: flex;
+    height: 100%;
+    transition: transform 0.6s ease;
+}
+.carousel-item {
+    min-width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.85);
+    border: none;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    color: #222;
+    transition: var(--transition);
+    z-index: 10;
+}
+.carousel-btn:hover { background: white; }
+.carousel-btn.prev { left: 2rem; }
+.carousel-btn.next { right: 2rem; }
+.project-info-container {
+    display: flex;
+    gap: 5rem;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.project-block {
+    flex: 1;
+}
+.block-title {
+    display: inline-block;
+    color: #FFFFFF;
+    background-color: var(--title-bg-custom);
+    padding: 12px 30px;
+    font-weight: 300;
+    font-size: 1.5rem;
+    margin-bottom: 1.8rem;
+    letter-spacing: 2px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+}
+.project-details {
+    font-size: 1rem;
+    line-height: 1.9;
+}
+.project-details p {
+    margin-bottom: 0.6rem;
+}
+.label {
+    font-weight: 600;
+    margin-right: 12px;
+}
+.sub-title {
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+}
+.timeline-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+.timeline-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: #333;
+    flex-shrink: 0;
+}
+.timeline-date {
+    min-width: 200px;
+    font-weight: 600;
+}
+@media (max-width: 768px) {
+    .kontext-container { flex-direction: column; align-items: flex-start; }
+    .kontext-keywords { grid-template-columns: 1fr; }
+    .project-info-container { flex-direction: column; gap: 3rem; }
+    .carousel-container { height: 320px; } 
+    .carousel-btn { width: 40px; height: 40px; }
+}
+/* ---------- Vision 页面样式 (与独立页面完全一致) ---------- */
+.vision-flex-container {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    margin-bottom: 5rem;
+}
+.vision-img-side {
+    flex: 1;
+    min-width: 300px;
+}
+.vision-img-side img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    display: block;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+.vision-text-side {
+    flex: 1.5;
+    text-align: left;
+}
+.vision-text-side p {
+    margin-bottom: 1.5rem;
+}
+.vision-text-side p:last-child {
+    margin-bottom: 0;
+}
+.vision-highlight {
+    color: var(--highlight-green);
+    font-weight: bold;
+}
+@media (max-width: 768px) {
+    .vision-flex-container { flex-direction: column; gap: 30px; }
+    .vision-img-side { order: 2; width: 100%; }
+    .vision-text-side { order: 1; }
+    .vision-flex-container:last-of-type .vision-img-side { order: 2; }
+}
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo" onclick="showPage('home', event)">
+            <img src="./images/Logo.png" alt="Grünwerk Logo" style="height: 96px; width: auto; max-width: 200px; object-fit: contain;">
+        </div>
+    <ul class="nav-links">
+        <li>
+        <a href="javascript:void(0)" onclick="showPage('home')">STARTSEITE</a>
+        </li>
+        <li>
+        <a href="javascript:void(0)" onclick="loadExternalSection('projekt.html','project')">PROJEKT</a>
+        </li>
+        <li>
+        <a href="javascript:void(0)" onclick="loadExternalSection('vision.html','vision')">VISION</a>
+        </li>
+        <li>
+        <a href="javascript:void(0)" onclick="showPage('term')">AKTUELLES/TERMINE</a>
+        </li>
+        <li>
+        <a href="javascript:void(0)" onclick="showPage('contact')">KONTAKT</a>
+        </li>
+        <li class="lang-item">
+            <select id="lang-dropdown" onchange="toggleLanguage(this.value)">
+                <option value="de">DE</option>
+                <option value="en">EN</option>
+            </select>
+        </li>
+    </ul>
+    </nav>
+    <!-- STARTSEITE (HOME) -->
+    <section id="home" class="active home-section">
+        <div class="hero-banner-fs anim-active" id="hero-container">
+            <h1 class="hero-title-fs"><span class="line-1" id="t-slogan-1">Handwerker bauen</span><span class="line-2" id="t-slogan-2">nachhaltig – gemeinsam</span></h1>
+            <p class="hero-sub-fs" id="t-hero-sub">Nachhaltig leben in Frohnholz - Dietenbach</p>
+        </div>
+        <div style="padding: 5rem 5%; background-color: var(--white); display: flex; justify-content: center;">
+            <div style="max-width: 800px; text-align: center; line-height: 1.8;">
+                <p style="margin-bottom: 1.5rem;"><strong id="t-intro-title" style="font-size: 1.5rem; color: var(--text-color);">Baugruppe Grünwerk</strong></p>
+                <p id="t-intro-body" style="font-size: 1rem; color: var(--text-color);">steht für ein neues, zukunftsweisendes Wohnen im Herzen von Freiburgs neuem Stadtteil Dietenbach. Als Handwerker-getragene Baugruppe verbinden wir fachliche Kompetenz, nachhaltige Bauweisen und die Kraft der Gemeinschaft – um im 1. Bauabschnitt von Dietenbach einen lebendigen, klimafreundlichen und sozialen Ort zu schaffen, der Platz für Leben, Arbeiten und Kreativität bietet. Unser Ansatz: bauen mit Herz, Qualität und Verantwortung für die Umwelt und die kommenden Generationen.</p>
+            </div>
+        </div>
+        <div style="padding: 4rem 10%; background-color: var(--bg-color);">
+            <h2 id="t-timeline-title" style="font-weight: 700; font-size: 1.5rem; margin-bottom: 2.5rem; color: var(--text-color);">Zeitplan 1. Vermarktungsabschnitt</h2>
+            <div class="milestone-container">
+                <div class="milestone-item" id="t-m1"><strong>27. Februar 2026</strong> – Start der Bewerbungsphase</div>
+                <div class="milestone-item" id="t-m2"><strong>02. März bis 15. Mai 2026</strong> – Zeitraum für Rückfragen</div>
+                <div class="milestone-item" id="t-m3"><strong>12. Juni 2026</strong> – Frist zur Abgabe der Erstbewerbungen</div>
+                <div class="milestone-item" id="t-m4"><strong>15. Juli bis 29. Juli 2026</strong> – Gespräche mit den Bewerbern</div>
+                <div class="milestone-item" id="t-m5"><strong>18. September 2026</strong> – Frist zur Abgabe der finalen Bewerbung</div>
+                <div class="milestone-item" id="t-m6"><strong>14. Dezember 2026</strong> – Gemeinderat Vergabeentscheidung</div>
+            </div>
+        </div>
+    </section>
+    <!-- AKTUELLES/TERMINE -->
+    <section id="term">
+        <h1 class="page-title" id="t-term-page-title">Aktuelles/Termine</h1>
+        <div style="max-width: 800px; margin-bottom: 3rem; text-align: left; line-height: 1.8;">
+            <p id="t-term-intro" style="font-size: 1rem; color: var(--text-color);">Hier finden Sie alle aktuellen Informationen zum Dietenbach-Projekt der Stadt Freiburg...</p>
+        </div>
+        <div class="milestone-container">
+            <div class="milestone-item" id="t-term-m1"><strong>27. Februar 2026</strong> – Start der Bewerbungsphase</div>
+            <div class="milestone-item" id="t-term-m2"><strong>02. März bis 15. Mai 2026</strong> – Zeitraum für Rückfragen</div>
+            <div class="milestone-item" id="t-term-m3"><strong>12. Juni 2026</strong> – Frist zur Abgabe der Erstbewerbungen</div>
+            <div class="milestone-item" id="t-term-m4"><strong>15. Juli bis 29. Juli 2026</strong> – Gespräche mit den Bewerbern</div>
+            <div class="milestone-item" id="t-term-m5"><strong>18. September 2026</strong> – Frist zur Abgabe der finalen Bewerbung</div>
+            <div class="milestone-item" id="t-term-m6"><strong>14. Dezember 2026</strong> – Gemeinderat Vergabeentscheidung</div>
+        </div>
+    </section>
+    <!-- KONTAKT -->
+    <section id="contact">
+        <h1 class="page-title" id="t-contact-page-title">Kontakt</h1>
+        <div style="max-width: 600px; text-align: left; margin-bottom: 1.5rem;">
+            <p id="t-contact-intro" style="font-size: 1rem; font-weight: 600;">Interesse an der Baugruppe Grünwerk? Kontaktieren Sie uns.</p>
+        </div>
+        <form id="contactForm" onsubmit="return validateForm(event)">
+            <div class="form-group">
+                <label id="t-label-salutation">Anrede *</label>
+                <input type="text" id="t-input-salutation" class="form-input" required placeholder="Frau / Herr / Divers">
+            </div>
+            <div class="form-group">
+                <label id="t-label-name">Name *</label>
+                <input type="text" class="form-input" required>
+            </div>
+            <div class="form-group">
+                <label id="t-label-phone">Telefon</label>
+                <input type="tel" class="form-input" required>
+            </div>
+            <div class="form-group">
+                <label id="t-label-email">E-Mail *</label>
+                <input type="email" class="form-input" required>
+            </div>
+            <div class="form-group">
+                <label id="t-label-message">Nachricht *</label>
+                <textarea class="form-input" rows="5" required></textarea>
+            </div>
+            <div class="gdpr-text">
+                <input type="checkbox" required>
+                <span id="t-label-gdpr">Ich stimme zu, dass meine Daten zur Kontaktaufnahme verwendet werden. Die Informationen werden nicht an Dritte weitergegeben.</span>
+            </div>
+            <button type="submit" class="btn btn-submit" id="t-btn-send">ABSENDEN</button>
+        </form>
+    </section>
+<!-- 新增动态内容容器 -->
+<section id="project"></section>
+<section id="vision"></section>
+    <footer class="site-footer">
+        <div class="footer-links">
+            <a href="impressum.html">Impressum</a><span class="footer-sep">|</span>
+            <a href="datenschutz.html">Datenschutzerklärung</a><span class="footer-sep">|</span>
+            <a href="javascript:void(0)" onclick="showPage('contact')">Kontakt</a>
+        </div>
+        <div class="footer-copyright">© 2026 Baugruppe Grünwerk Gemeinschaft, Freiburg im Breisgau</div>
+    </footer>
+<script>
+        // 新增：Projekt页面的翻译数据（与独立页面完全一致）
+        const projektTranslations = {
+            de: {
+                projectPageTitle: "das Projekt",
+                kw1Title: "Neuer Wohnraum in Dietenbach",
+                kw1Desc: "In Dietenbach entstehen ca. 6.900 Wohnungen, davon 50% geförderte Mietwohnungen – ideal für den angespannten Freiburger Wohnungsmarkt.",
+                kw2Title: "Soziale Mischung und Barrierefreiheit",
+                kw2Desc: "Der Stadtteil steht für Inklusion und Vielfalt: 22 Kitas, eine Gemeinschaftsschule sowie Quartiersräume schaffen einen sozialen Treffpunkt für alle Generationen.",
+                kw3Title: "Grünflächen und Freizeitanlagen",
+                kw3Desc: "Drei große Parks und zahlreiche kleine Grünflächen bieten Sport, Erholung und eine grüne Verbindung zum Rieselfeld – ideal für Familien und alle Altersgruppen.",
+                kw4Title: "Nachhaltige Energie und Mobilität",
+                kw4Desc: "Klimafreundliche Energieversorgung (Solar, Grundwasserwärme) und autofreie Quartiere: Hochgaragen, verlängerte Straßenbahn und fußgängerfreundliche Wege.",
+                kw5Title: "Gestaltung des öffentlichen Raums",
+                kw5Desc: "Market square and neighborhood squares as meeting points: Streets and squares promote neighborliness and social interaction in a high-quality, green environment.",
+                kw6Title: "Klimaschutz und nachhaltiges Bauen",
+                kw6Desc: "Holz als nachhaltiges Baumaterial, Wasserspeicherung und Begrünung machen Dietenbach zu einem umweltfreundlichen, klimaschonenden Stadtteil.",
+                projectBlockTitle: "unser Projekt",
+                projectDetails: `<p><span class="label">Lage:</span> Dietenbach, Bauabschnitt 1 (Frohnholz)</p>
+<p><span class="label">Geplant:</span> ca. 12–14 Eigentumswohnungen</p>
+<p><span class="sub-title">Energiestand:</span> passivhausstandard/KFW40 plus</p>
+<p>Nachhaltige Bauweise</p>
+<p>Barrierefrei mit Aufzug</p>
+<p>umweltfreundlich und familienfreundlich</p>`,
+                timelineBlockTitle: "Zeitplan",
+                timelineList: `<div class="timeline-item">
+                        <span class="timeline-dot"></span>
+                        <span class="timeline-date">12.06.2026</span>
+                        <span class="timeline-text">Bewerbungsabgabe</span>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-dot"></span>
+                        <span class="timeline-date">4. Quartal 2026</span>
+                        <span class="timeline-text">Vergabeentscheidung</span>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-dot"></span>
+                        <span class="timeline-date">2027</span>
+                        <span class="timeline-text">Baubeginn</span>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-dot"></span>
+                        <span class="timeline-date">2028/2029</span>
+                        <span class="timeline-text">Bezugsfertig</span>
+                    </div>`
+            },
+            en: {
+                projectPageTitle: "The Project",
+                kw1Title: "New Living Space in Dietenbach",
+                kw1Desc: "Around 6,900 apartments are being built in Dietenbach, 50% of which are subsidized rental apartments – ideal for Freiburg's tight housing market.",
+                kw2Title: "Social Mix and Accessibility",
+                kw2Desc: "The district stands for inclusion and diversity: 22 daycares, a community school and neighborhood spaces create a social meeting point for all generations.",
+                kw3Title: "Green Spaces and Leisure Facilities",
+                kw3Desc: "Three large parks and numerous small green areas offer sports, recreation and a green connection to Rieselfeld – ideal for families and all age groups.",
+                kw4Title: "Sustainable Energy and Mobility",
+                kw4Desc: "Climate-friendly energy supply (solar, groundwater heat) and car-free neighborhoods: parking garages, extended tram lines and pedestrian-friendly paths.",
+                kw5Title: "Public Space Design",
+                kw5Desc: "Market square and neighborhood squares as meeting points: Streets and squares promote neighborliness and social interaction in a high-quality, green environment.",
+                kw6Title: "Climate Protection and Sustainable Building",
+                kw6Desc: "Wood as a sustainable building material, water storage and greening make Dietenbach an environmentally friendly, climate-friendly district.",
+                projectBlockTitle: "Our Project",
+                projectDetails: `<p><span class="label">Location:</span> Dietenbach, Construction Phase 1 (Frohnholz)</p>
+<p><span class="label">Planned:</span> approx. 12–14 condominiums</p>
+<p><span class="sub-title">Energy Standard:</span> Passivhaus / KFW40 plus</p>
+<p>Sustainable construction</p>
+<p>Accessible with elevator</p>
+<p>Environmentally friendly and family-friendly</p>`,
+                timelineBlockTitle: "Timeline",
+                timelineList: `<div class="timeline-item">
+                        <span class="timeline-dot"></span>
+                        <span class="timeline-date">06/12/2026</span>
+                        <span class="timeline-text">Application Submission</span>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-dot"></span>
+                        <span class="timeline-date">Q4 2026</span>
+                        <span class="timeline-text">Award Decision</span>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-dot"></span>
+                        <span class="timeline-date">2027</span>
+                        <span class="timeline-text">Construction Start</span>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-dot"></span>
+                        <span class="timeline-date">2028/2029</span>
+                        <span class="timeline-text">Ready for Move-in</span>
+                    </div>`
+            }
+        };
+        // 新增：Projekt页面的语言切换函数（与独立页面完全一致）
+        function toggleLanguageProjekt(lang) {
+            if(document.getElementById("t-project-page-title")) document.getElementById("t-project-page-title").innerText = projektTranslations[lang].projectPageTitle;
+            if(document.getElementById("t-kw1-title")) document.getElementById("t-kw1-title").innerText = projektTranslations[lang].kw1Title;
+            if(document.getElementById("t-kw1-desc")) document.getElementById("t-kw1-desc").innerText = projektTranslations[lang].kw1Desc;
+            if(document.getElementById("t-kw2-title")) document.getElementById("t-kw2-title").innerText = projektTranslations[lang].kw2Title;
+            if(document.getElementById("t-kw2-desc")) document.getElementById("t-kw2-desc").innerText = projektTranslations[lang].kw2Desc;
+            if(document.getElementById("t-kw3-title")) document.getElementById("t-kw3-title").innerText = projektTranslations[lang].kw3Title;
+            if(document.getElementById("t-kw3-desc")) document.getElementById("t-kw3-desc").innerText = projektTranslations[lang].kw3Desc;
+            if(document.getElementById("t-kw4-title")) document.getElementById("t-kw4-title").innerText = projektTranslations[lang].kw4Title;
+            if(document.getElementById("t-kw4-desc")) document.getElementById("t-kw4-desc").innerText = projektTranslations[lang].kw4Desc;
+            if(document.getElementById("t-kw5-title")) document.getElementById("t-kw5-title").innerText = projektTranslations[lang].kw5Title;
+            if(document.getElementById("t-kw5-desc")) document.getElementById("t-kw5-desc").innerText = projektTranslations[lang].kw5Desc;
+            if(document.getElementById("t-kw6-title")) document.getElementById("t-kw6-title").innerText = projektTranslations[lang].kw6Title;
+            if(document.getElementById("t-kw6-desc")) document.getElementById("t-kw6-desc").innerText = projektTranslations[lang].kw6Desc;
+            if(document.getElementById("t-project-block-title")) document.getElementById("t-project-block-title").innerText = projektTranslations[lang].projectBlockTitle;
+            if(document.getElementById("t-project-details")) document.getElementById("t-project-details").innerHTML = projektTranslations[lang].projectDetails;
+            if(document.getElementById("t-timeline-block-title")) document.getElementById("t-timeline-block-title").innerText = projektTranslations[lang].timelineBlockTitle;
+            if(document.getElementById("t-timeline-list")) document.getElementById("t-timeline-list").innerHTML = projektTranslations[lang].timelineList;
+        }
+        // 新增：Vision页面的翻译数据（与独立页面完全一致）
+        const visionTranslations = {
+            de: {
+                visionPageTitle: "Unsere Vision",
+                visionBlock1: `<p>Baugruppe Grünwerk basiert auf zwei zentralen Säulen: die <span class="vision-highlight">nachhaltige, umweltfreundliche Bauweise</span> im Sinne von Dietenbachs <span class="vision-highlight">Klimaschutz-Zielen</span> und die <span class="vision-highlight">Stärke der Handwerker-getragenen Gemeinschaft</span>.</p>
+                               <p>Als Handwerker*innen wissen wir, worauf es bei qualitativ hochwertigem Bauen ankommt – und wir nutzen diese Erfahrung, um den 1. Bauabschnitt von Dietenbach mit effizienten, ressourcenschonenden und energieoptimierten Gebäuden zu gestalten. Wir bauen nachhaltig und energieeffizient, setzen auf nachwachsende Rohstoffe wie Holz, integrieren erneuerbare Energien und folgen den strengen Passivhaus-Standards Freiburgs. Unser Ansatz vermeidet überflüssige Zwischenschritte, sodass wir Bauqualität sichern und gleichzeitig Kosten effizient gestalten – ein Vorteil, der sich auf das gesamte Quartier auswirkt.</p>`,
+                visionBlock2: `<p>Unsere Vision geht aber über das Bauen hinaus: Wir schaffen einen sozialen Ort, der Inklusion, Nachbarschaft und gemeinsames Gestalten fördert. Dietenbachs Idee eines naturnah, klimaschonend und autofreien Quartiers leben wir nicht nur nach – wir erweitern sie um einen Ort für gemeinsames Arbeiten, Kreativität und Austausch. Als Baugruppe sind wir die Bewohner*innen selbst: Wir gestalten unseren Wohnraum aktiv mit, nehmen Verantwortung und schaffen eine nachhaltige Gemeinschaft, die über den Bau hinaus besteht.</p>
+                               <p>Wir bleiben stets am Puls der Zeit: Neue Technologien im nachhaltigen Bauen, innovative Energiekonzepte und die Bedürfnisse der Gesellschaft integrieren wir in unseren Planungen – um ein Pilotprojekt für modernes, gemeinschaftliches Wohnen in Freiburg zu schaffen.</p>`
+            },
+            en: {
+                visionPageTitle: "Our Vision",
+                visionBlock1: `<p>Baugruppe Grünwerk is based on two central pillars: the <span class="vision-highlight">sustainable, environmentally friendly construction methods</span> in line with Dietenbach's <span class="vision-highlight">climate protection goals</span> and the <span class="vision-highlight">strength of the craftsman-led community</span>.</p>
+                               <p>As craftspeople, we know what matters in high-quality construction – and we use this experience to design the first construction phase of Dietenbach with efficient, resource-saving and energy-optimized buildings. We build sustainably and energy-efficiently, use renewable raw materials such as wood, integrate renewable energies and follow Freiburg's strict Passivhaus standards. Our approach avoids unnecessary intermediate steps, ensuring construction quality while efficiently managing costs – an advantage that benefits the entire neighborhood.</p>`,
+                visionBlock2: `<p>Our vision goes beyond construction, however: We create a social space that promotes inclusion, neighborliness and collaborative design. We not only live up to Dietenbach's vision of a nature-friendly, climate-friendly and car-free neighborhood – we expand it to include a space for collaborative work, creativity and exchange. As a building group, we are the residents ourselves: We actively shape our living space, take responsibility and create a sustainable community that endures beyond the construction phase.</p>
+                               <p>We always stay up to date: We integrate new technologies in sustainable construction, innovative energy concepts and the needs of society into our planning – to create a pilot project for modern, community-oriented living in Freiburg.</p>`
+            }
+        };
+        // 新增：Vision页面的语言切换函数（与独立页面完全一致）
+        function toggleLanguageVision(lang) {
+            if(document.getElementById("t-vision-page-title")) document.getElementById("t-vision-page-title").innerText = visionTranslations[lang].visionPageTitle;
+            if(document.getElementById("t-vision-block-1")) document.getElementById("t-vision-block-1").innerHTML = visionTranslations[lang].visionBlock1;
+            if(document.getElementById("t-vision-block-2")) document.getElementById("t-vision-block-2").innerHTML = visionTranslations[lang].visionBlock2;
+        }
+        const translations = {
+            de: {
+                slogan1: "Handwerker bauen", slogan2: "nachhaltig – gemeinsam", heroSub: "Nachhaltig leben in Frohnholz - Dietenbach",
+                introTitle: "Baugruppe Grünwerk", introBody: "steht für ein neues, zukunftsweisendes Wohnen im Herzen von Freiburgs neuem Stadtteil Dietenbach. Als Handwerker-getragene Baugruppe verbinden wir fachliche Kompetenz, nachhaltige Bauweisen und die Kraft der Gemeinschaft – um im 1. Bauabschnitt von Dietenbach einen lebendigen, klimafreundlichen und sozialen Ort zu schaffen, der Platz für Leben, Arbeiten und Kreativität bietet. Unser Ansatz: bauen mit Herz, Qualität und Verantwortung für die Umwelt und die kommenden Generationen.",
+                timelineTitle: "Zeitplan 1. Vermarktungsabschnitt",
+                m1: "<strong>27. Februar 2026</strong> – Start der Bewerbungsphase",
+                m2: "<strong>02. März bis 15. Mai 2026</strong> – Zeitraum für Rückfragen",
+                m3: "<strong>12. Juni 2026</strong> – Frist zur Abgabe der Erstbewerbungen",
+                m4: "<strong>15. Juli bis 29. Juli 2026</strong> – Gespräche mit den Bewerbern",
+                m5: "<strong>18. September 2026</strong> – Frist zur Abgabe der finalen Bewerbung",
+                m6: "<strong>14. Dezember 2026</strong> – Gemeinderat Vergabeentscheidung",
+                termPageTitle: "Aktuelles/Termine",
+                termIntro: "Hier finden Sie alle aktuellen Informationen zum Dietenbach-Projekt der Stadt Freiburg...",
+                contactPageTitle: "Kontakt",
+                contactIntro: "Interesse an der Baugruppe Grünwerk? Kontaktieren Sie uns.",
+                labelSalutation: "Anrede *",
+                placeholderSalutation: "Frau / Herr / Divers",
+                labelName: "Name *",
+                labelPhone: "Telefon",
+                labelEmail: "E-Mail *",
+                labelMessage: "Nachricht *",
+                labelGdpr: "Ich stimme zu, dass meine Daten zur Kontaktaufnahme verwendet werden. Die Informationen werden nicht an Dritte weitergegeben.",
+                btnSend: "ABSENDEN"
+            },
+            en: {
+                slogan1: "Craftsmen build", slogan2: "sustainably – together", heroSub: "Sustainable living in Frohnholz - Dietenbach",
+                introTitle: "Green Cooperative Building", introBody: "stands for a new, forward-looking way of living in the heart of Freiburg's new district Dietenbach. As a craftsman-led building group, we combine professional expertise, sustainable construction methods and the power of community – to create a vibrant, climate-friendly and social space in the 1st construction phase of Dietenbach that offers room for living, working and creativity. Our approach: building with heart, quality and responsibility for the environment and future generations.",
+                timelineTitle: "Timeline of the 1st Marketing Phase",
+                m1: "<strong>February 27, 2026</strong> – Start of application phase",
+                m2: "<strong>March 02 to May 15, 2026</strong> – Period for inquiries",
+                m3: "<strong>June 12, 2026</strong> – Deadline for submission of initial applications",
+                m4: "<strong>July 15 to July 29, 2026</strong> – Talks with applicants",
+                m5: "<strong>September 18, 2026</strong> – Deadline for submission of final applications",
+                m6: "<strong>December 14, 2026</strong> – Council decision on award",
+                termPageTitle: "News/Events",
+                termIntro: "Here you will find all current information about the city of Freiburg's Dietenbach project...",
+                contactPageTitle: "Contact",
+                contactIntro: "Interested in the Grünwerk building group? Get in touch with us.",
+                labelSalutation: "Salutation *",
+                placeholderSalutation: "Ms / Mr / Divers",
+                labelName: "Name *",
+                labelPhone: "Phone",
+                labelEmail: "E-Mail *",
+                labelMessage: "Message *",
+                labelGdpr: "I agree that my data will be used for contact purposes. The information will not be passed on to third parties.",
+                btnSend: "SEND"
+            }
+        };
+        // 优化后的页面切换函数
+        function showPage(pageId) {
+        const pages = ['home','term','contact','project','vision'];
+        pages.forEach(id => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        if (id === pageId) {
+            el.classList.add('active');
+        } else {
+            el.classList.remove('active');
+        }
+    });
+    // 切换页面后回到顶部
+    window.scrollTo(0, 0);
+}
+        function toggleLanguage(lang) {
+            localStorage.setItem('selectedLang', lang);
+            const mapping = {
+                "t-slogan-1": "slogan1", "t-slogan-2": "slogan2", "t-hero-sub": "heroSub",
+                "t-intro-title": "introTitle", "t-intro-body": "introBody", "t-timeline-title": "timelineTitle",
+                "t-term-page-title": "termPageTitle", "t-term-intro": "termIntro",
+                "t-contact-page-title": "contactPageTitle", "t-contact-intro": "contactIntro",
+                "t-label-salutation": "labelSalutation", "t-label-name": "labelName",
+                "t-label-phone": "labelPhone", "t-label-email": "labelEmail",
+                "t-label-message": "labelMessage", "t-label-gdpr": "labelGdpr",
+                "t-btn-send": "btnSend"
+            };
+            // 使用requestAnimationFrame确保翻译更新不阻塞页面切换
+            requestAnimationFrame(() => {
+                for (let id in mapping) {
+                    const el = document.getElementById(id);
+                    if (el) el.innerText = translations[lang][mapping[id]];
+                }
+                const salutationInput = document.getElementById("t-input-salutation");
+                if (salutationInput) salutationInput.placeholder = translations[lang].placeholderSalutation;
+                for(let i=1; i<=6; i++) {
+                    if(document.getElementById(`t-m${i}`)) document.getElementById(`t-m${i}`).innerHTML = translations[lang][`m${i}`];
+                    if(document.getElementById(`t-term-m${i}`)) document.getElementById(`t-term-m${i}`).innerHTML = translations[lang][`m${i}`];
+                }
+                // 同步翻译Projekt和Vision页面的内容（如果已经加载过）
+                toggleLanguageProjekt(lang);
+                toggleLanguageVision(lang);
+                // 优化动画重启逻辑，避免干扰页面切换
+                const heroContainer = document.getElementById('hero-container');
+                if(heroContainer) {
+                    setTimeout(() => {
+                        heroContainer.classList.remove('anim-active');
+                        void heroContainer.offsetWidth;
+                        heroContainer.classList.add('anim-active');
+                    }, 100); // 延迟100ms执行，避免和页面切换冲突
+                }
+            });
+        }
+/* 新增：动态加载外部 Section 函数 */
+async function loadExternalSection(url, sectionId) {
+    const container = document.getElementById(sectionId);
+    // 如果已经加载过内容，直接显示并返回，避免重复请求
+    if (container.innerHTML.trim() !== "") {
+        showPage(sectionId);
+        return;
+    }
+    try {
+        const response = await fetch(url);
+        const html = await response.text();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, "text/html");
+        const externalSection = doc.getElementById(sectionId);
+        if (externalSection) {
+            // B) 插入 innerHTML
+            container.innerHTML = externalSection.innerHTML;
+            // D) 执行语言同步逻辑
+            const savedLang = localStorage.getItem('selectedLang') || 'de';
+            // 先同步Main页面的内容
+            toggleLanguage(savedLang);
+            // 然后同步对应页面的内容
+            if(sectionId === 'project') {
+                toggleLanguageProjekt(savedLang);
+            } else if(sectionId === 'vision') {
+                toggleLanguageVision(savedLang);
+            }
+            // 激活并显示该 Section
+            showPage(sectionId);
+        }
+    } catch (error) {
+        console.error("加载页面失败:", error);
+        // 如果 fetch 失败，则降级为正常跳转
+        window.location.href = url;
+    }
+}
+        function validateForm(e) {
+            e.preventDefault();
+            alert('Danke! / Thank you!');
+            return false;
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+         // 读取URL中的 #hash
+            const hash = window.location.hash.replace('#','');
+            // 如果URL带有 #term 或 #contact
+            if(hash === 'term' || hash === 'contact'){
+            showPage(hash);
+            }else{
+            showPage('home');
+        }
+    toggleLanguage('de');
+});
+/* ---------- Carousel (Projekt Seite) ---------- */
+let currentSlide = 0;
+function moveCarousel(direction) {
+    const track = document.getElementById("carousel-track");
+    if(!track) return;
+    const slides = track.children;
+    const totalSlides = slides.length;
+    currentSlide += direction;
+    if (currentSlide < 0) currentSlide = totalSlides - 1;
+    if (currentSlide >= totalSlides) currentSlide = 0;
+    track.style.transform = `translateX(-${currentSlide * 100}%)`;
+}
+/* 自动轮播 */
+setInterval(() => {
+    moveCarousel(1);
+}, 5000);
+    </script>
+</body>
+</html>

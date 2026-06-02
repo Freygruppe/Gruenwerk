@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unsere Vision | Baugruppe Grünwerk</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --main-color: #8A9E94;       
+            --secondary-color: #B8A98F;  
+            --text-color: #333333;       
+            --title-color: #000000;      
+            --border-color: #8A9E94;     
+            --bg-color: #F4F7F6;         
+            --title-bg-custom: #9AB0A6;  
+            --transition: all 0.3s ease;
+            --white: #FFFFFF;
+            --timeline-line: #E5E7EB; 
+            --highlight-green: #2E8B57;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            color: var(--text-color); 
+            line-height: 1.8; 
+            background-color: var(--bg-color); 
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background-color: var(--white);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            height: 96px; 
+        }
+        .logo { height: 96px; cursor: pointer; display: flex; align-items: center;  width: auto; max-width: 200px;}
+        .nav-links { 
+            display: flex; 
+            list-style: none; 
+            gap: 2rem; 
+            flex: 1; 
+            justify-content: flex-end; 
+            margin-right: 2rem; 
+            align-items: center;
+        }
+        .nav-links a { 
+            text-decoration: none; 
+            color: #333333; 
+            font-size: 0.85rem; 
+            font-weight: 600; 
+            letter-spacing: 1px;
+            transition: var(--transition);
+        }
+        .nav-links a:hover { color: var(--main-color); }
+        #lang-dropdown {
+            background: transparent; border: none; color: #333333; font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem; font-weight: 600; letter-spacing: 1px; cursor: pointer; padding: 0 5px;
+            outline: none; transition: var(--transition); appearance: none; -webkit-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3E%3Cpath fill='%23333333' d='M0 2l4 4 4-4z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat; background-position: right center; padding-right: 15px;
+        }
+        .btn {
+            background-color: var(--main-color); color: var(--white); border: none; padding: 10px 20px;
+            cursor: pointer; font-family: 'Montserrat', sans-serif; font-weight: 600;
+            transition: var(--transition); text-transform: uppercase; font-size: 0.8rem; border-radius: 4px; 
+        }
+        .btn:hover { background-color: #A9C0B6; transform: translateY(-1px); }
+        .page-title {
+            display: inline-block; color: #FFFFFF; background-color: var(--title-bg-custom); 
+            padding: 12px 30px; font-weight: 300; font-size: 2rem; margin-bottom: 2rem;
+            letter-spacing: 2px; box-shadow: 0 1px 2px rgba(0,0,0,0.08); 
+            width: auto;
+        }
+        section { padding: 4rem 10%; min-height: 80vh; background-color: var(--bg-color); }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .vision-flex-container {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            margin-bottom: 5rem;
+        }
+        .vision-img-side {
+            flex: 1;
+            min-width: 300px;
+        }
+        .vision-img-side img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+            display: block;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+        .vision-text-side {
+            flex: 1.5;
+            text-align: left;
+        }
+        .vision-text-side p {
+            margin-bottom: 1.5rem;
+        }
+        .vision-text-side p:last-child {
+            margin-bottom: 0;
+        }
+        .vision-highlight {
+            color: var(--highlight-green);
+            font-weight: bold;
+        }
+        .site-footer { background-color: #C7B89B; padding: 25px 30px; width: 100%; color: #F0F0F0; font-size: 14px; text-align: center; }
+        .footer-links { display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 15px; }
+        .footer-links a { color: #F0F0F0; text-decoration: none; transition: var(--transition); }
+        .footer-links a:hover { color: #333333; }
+        .footer-sep { color: #F0F0F0; opacity: 0.6; }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            section { padding: 3rem 5%; }
+            .page-title { font-size: 1.5rem; }
+            .vision-flex-container { flex-direction: column; gap: 30px; }
+            .vision-img-side { order: 2; width: 100%; }
+            .vision-text-side { order: 1; }
+            .vision-flex-container:last-of-type .vision-img-side { order: 2; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo" onclick="window.location.href='main.html'">
+            <img src="./images/Logo.png" alt="Grünwerk Logo" style="height: 96px; width: auto;  max-width: 200px; object-fit: contain;">
+        </div>
+        <ul class="nav-links">
+            <li><a href="#" onclick="window.location.href='main.html'">STARTSEITE</a></li>
+            <li><a href="#" onclick="window.location.href='projekt.html'">PROJEKT</a></li>
+            <li><a href="#" onclick="window.location.href='vision.html'">VISION</a></li>
+            <li><a href="#" onclick="window.location.href='main.html#term'">AKTUELLES/TERMINE</a></li>
+            <li><a href="#" onclick="window.location.href='main.html#contact'">KONTAKT</a></li>
+            <li class="lang-item">
+                <select id="lang-dropdown">
+                    <option value="de">DE</option>
+                    <option value="en">EN</option>
+                </select>
+            </li>
+        </ul>
+    </nav>
+    <section id="vision">
+        <h1 class="page-title" id="t-vision-page-title">Unsere Vision</h1>
+        
+        <div class="vision-flex-container">
+            <div class="vision-img-side">
+                <img src="./images/Vision-1.jpg" alt="Sustainability and Community">
+            </div>
+            <div class="vision-text-side" id="t-vision-block-1">
+                <p>Baugruppe Grünwerk basiert auf zwei zentralen Säulen: die <span class="vision-highlight">nachhaltige, umweltfreundliche Bauweise</span> im Sinne von Dietenbachs <span class="vision-highlight">Klimaschutz-Zielen</span> und die <span class="vision-highlight">Stärke der Handwerker-getragenen Gemeinschaft</span>.</p>
+                <p>Als Handwerker*innen wissen wir, worauf es bei qualitativ hochwertigem Bauen ankommt – und wir nutzen diese Erfahrung, um den 1. Bauabschnitt von Dietenbach mit effizienten, ressourcenschonenden und energieoptimierten Gebäuden zu gestalten. Wir bauen nachhaltig und energieeffizient, setzen auf nachwachsende Rohstoffe wie Holz, integrieren erneuerbare Energien und folgen den strengen Passivhaus-Standards Freiburgs. Unser Ansatz vermeidet überflüssige Zwischenschritte, sodass wir Bauqualität sichern und gleichzeitig Kosten effizient gestalten – ein Vorteil, der sich auf das gesamte Quartier auswirkt.</p>
+            </div>
+        </div>
+        <div class="vision-flex-container">
+            <div class="vision-text-side" id="t-vision-block-2">
+                <p>Unsere Vision geht aber über das Bauen hinaus: Wir schaffen einen sozialen Ort, der Inklusion, Nachbarschaft und gemeinsames Gestalten fördert. Dietenbachs Idee eines naturnah, klimaschonend und autofreien Quartiers leben wir nicht nur nach – wir erweitern sie um einen Ort für gemeinsames Arbeiten, Kreativität und Austausch. Als Baugruppe sind wir die Bewohner*innen selbst: Wir gestalten unseren Wohnraum aktiv mit, nehmen Verantwortung und schaffen eine nachhaltige Gemeinschaft, die über den Bau hinaus besteht.</p>
+                <p>Wir bleiben stets am Puls der Zeit: Neue Technologien im nachhaltigen Bauen, innovative Energiekonzepte und die Bedürfnisse der Gesellschaft integrieren wir in unseren Planungen – um ein Pilotprojekt für modernes, gemeinschaftliches Wohnen in Freiburg zu schaffen.</p>
+            </div>
+            <div class="vision-img-side">
+                <img src="./images/Vision-2.jpg" alt="Social Living">
+            </div>
+        </div>
+    </section>
+    <footer class="site-footer">
+        <div class="footer-links">
+            <a href="impressum.html">Impressum</a><span class="footer-sep">|</span>
+            <a href="datenschutz.html">Datenschutzerklärung</a><span class="footer-sep">|</span>
+            <a href="main.html#contact">Kontakt</a>
+        </div>
+        <div class="footer-copyright">© 2026 Baugruppe Grünwerk Gemeinschaft, Freiburg im Breisgau</div>
+    </footer>
+    <script>
+        const translations = {
+            de: {
+                visionPageTitle: "Unsere Vision",
+                visionBlock1: `<p>Baugruppe Grünwerk basiert auf zwei zentralen Säulen: die <span class="vision-highlight">nachhaltige, umweltfreundliche Bauweise</span> im Sinne von Dietenbachs <span class="vision-highlight">Klimaschutz-Zielen</span> und die <span class="vision-highlight">Stärke der Handwerker-getragenen Gemeinschaft</span>.</p>
+                               <p>Als Handwerker*innen wissen wir, worauf es bei qualitativ hochwertigem Bauen ankommt – und wir nutzen diese Erfahrung, um den 1. Bauabschnitt von Dietenbach mit effizienten, ressourcenschonenden und energieoptimierten Gebäuden zu gestalten. Wir bauen nachhaltig und energieeffizient, setzen auf nachwachsende Rohstoffe wie Holz, integrieren erneuerbare Energien und folgen den strengen Passivhaus-Standards Freiburgs. Unser Ansatz vermeidet überflüssige Zwischenschritte, sodass wir Bauqualität sichern und gleichzeitig Kosten effizient gestalten – ein Vorteil, der sich auf das gesamte Quartier auswirkt.</p>`,
+                visionBlock2: `<p>Unsere Vision geht aber über das Bauen hinaus: Wir schaffen einen sozialen Ort, der Inklusion, Nachbarschaft und gemeinsames Gestalten fördert. Dietenbachs Idee eines naturnah, klimaschonend und autofreien Quartiers leben wir nicht nur nach – wir erweitern sie um einen Ort für gemeinsames Arbeiten, Kreativität und Austausch. Als Baugruppe sind wir die Bewohner*innen selbst: Wir gestalten unseren Wohnraum aktiv mit, nehmen Verantwortung und schaffen eine nachhaltige Gemeinschaft, die über den Bau hinaus besteht.</p>
+                               <p>Wir bleiben stets am Puls der Zeit: Neue Technologien im nachhaltigen Bauen, innovative Energiekonzepte und die Bedürfnisse der Gesellschaft integrieren wir in unseren Planungen – um ein Pilotprojekt für modernes, gemeinschaftliches Wohnen in Freiburg zu schaffen.</p>`
+            },
+            en: {
+                visionPageTitle: "Our Vision",
+                visionBlock1: `<p>Baugruppe Grünwerk is based on two central pillars: the <span class="vision-highlight">sustainable, environmentally friendly construction methods</span> in line with Dietenbach's <span class="vision-highlight">climate protection goals</span> and the <span class="vision-highlight">strength of the craftsman-led community</span>.</p>
+                               <p>As craftspeople, we know what matters in high-quality construction – and we use this experience to design the first construction phase of Dietenbach with efficient, resource-saving and energy-optimized buildings. We build sustainably and energy-efficiently, use renewable raw materials such as wood, integrate renewable energies and follow Freiburg's strict Passivhaus standards. Our approach avoids unnecessary intermediate steps, ensuring construction quality while efficiently managing costs – an advantage that benefits the entire neighborhood.</p>`,
+                visionBlock2: `<p>Our vision goes beyond construction, however: We create a social space that promotes inclusion, neighborliness and collaborative design. We not only live up to Dietenbach's vision of a nature-friendly, climate-friendly and car-free neighborhood – we expand it to include a space for collaborative work, creativity and exchange. As a building group, we are the residents ourselves: We actively shape our living space, take responsibility and create a sustainable community that endures beyond the construction phase.</p>
+                               <p>We always stay up to date: We integrate new technologies in sustainable construction, innovative energy concepts and the needs of society into our planning – to create a pilot project for modern, community-oriented living in Freiburg.</p>`
+            }
+        };
+        function toggleLanguage(lang) {
+            localStorage.setItem('selectedLang', lang);
+            document.getElementById("t-vision-page-title").innerText = translations[lang].visionPageTitle;
+            document.getElementById("t-vision-block-1").innerHTML = translations[lang].visionBlock1;
+            document.getElementById("t-vision-block-2").innerHTML = translations[lang].visionBlock2;
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('selectedLang') || 'de';
+            const langSelect = document.getElementById('lang-dropdown');
+            langSelect.value = savedLang;
+            
+            // 修复：确保事件绑定在DOM加载后，避免内联事件失效
+            langSelect.addEventListener('change', function() {
+                toggleLanguage(this.value);
+            });
+            
+            toggleLanguage(savedLang);
+        });
+    </script>
+</body>
+</html>
